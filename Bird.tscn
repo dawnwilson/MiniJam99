@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.0
 
-[node name="Bird" type="KinematicBody2D"]
+[node name="Bird" type="KinematicBody2D" groups=["Birds"]]
 position = Vector2( -11, 0 )
 script = ExtResource( 2 )
 
@@ -21,3 +21,9 @@ shape = SubResource( 1 )
 
 [node name="ScareZone" parent="." instance=ExtResource( 3 )]
 position = Vector2( 9, 11 )
+
+[node name="EatTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="EatTimer" to="." method="_on_EatTimer_timeout"]

@@ -16,11 +16,13 @@ onready var tween = $Tween
 func _ready() -> void:
 	$SpawnBirdTimer.wait_time = 10
 
+
 func pickRandomStartLocation() -> Vector2:
 	randomNum.randomize()
 	var index = randomNum.randi_range(0, birdStartLocations.size() - 1)
 	var startPosition = birdStartLocations[index]
 	return startPosition
+
 
 func pickRandomPlantLocation() -> Vector2:
 	randomNum.randomize()
@@ -63,6 +65,8 @@ func _on_Play_Button_pressed() -> void:
 	$OverallTimer.start()
 
 
-func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
-	emit_signal("birdLanded")
+func _on_Tween_tween_completed(newBird: Object, key: NodePath) -> void:
+	emit_signal("birdLanded", newBird)
+	
 	pass # Replace with function body.
+

@@ -25,8 +25,10 @@ func getBirdStartLocations() -> void:
 		birdSpawner.birdStartLocations.push_back(pos)
 
 
-func checkForOverlappingBirds() -> void:
-#	birdsOnPlants = $BirdSpawner.get_node("Birds").get_children()
-#	var overlappingBirds = get_overlapping_bodies(birdsOnPlants)
-#	print(birdsOnPlants)
+func checkForOverlappingBirds(newBird : Bird) -> void:
+	#TODO: bird move if on another bird
+	#if bird isn't overlapping:
+	newBird.eating()
 	pass
+
+	
