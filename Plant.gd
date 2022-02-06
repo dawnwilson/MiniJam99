@@ -8,6 +8,9 @@ enum growthStage {FULL, HALF, DEAD}
 
 var plantStage = growthStage.FULL
 
+var hasBird := false
+var landedBird : Bird
+
 
 func _on_Plant_body_entered(body: Node) -> void:
 	if body.name == "Player":
@@ -16,8 +19,9 @@ func _on_Plant_body_entered(body: Node) -> void:
 		elif plantStage == growthStage.HALF:
 			plantStage = growthStage.DEAD
 	if overlaps_body(body) && body.is_in_group("Birds"):
+		hasBird = true
+		landedBird = body
 		$DestroyTimer.start()
-		print("Bird is on Plant")
 
 
 func _process(delta: float) -> void:
@@ -30,7 +34,14 @@ func _process(delta: float) -> void:
 
 
 func _on_DestroyTimer_timeout() -> void:
-	if plantStage == growthStage.FULL:
-		plantStage = growthStage.HALF
-	elif plantStage == growthStage.HALF:
-		plantStage = growthStage.DEAD
+	if hasBird:
+		if plantStage == growthStage.FULL:
+			plantStage = growthStage.HALF
+		elif plantStage == growthStage.HALF:
+			plantStage = growthStage.DEAD
+			landedBird.scareBird()
+
+
+func _on_Plant_body_exited(body: Node) -> void:
+	if body.is_in_group("Birds"):
+		hasBird = false

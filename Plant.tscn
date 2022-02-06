@@ -26,4 +26,5 @@ shape = SubResource( 1 )
 wait_time = 3.0
 
 [connection signal="body_entered" from="." to="." method="_on_Plant_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Plant_body_exited"]
 [connection signal="timeout" from="DestroyTimer" to="." method="_on_DestroyTimer_timeout"]

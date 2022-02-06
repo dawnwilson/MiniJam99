@@ -13,10 +13,6 @@ var randomNum = RandomNumberGenerator.new()
 onready var tween = $Tween
 
 
-func _ready() -> void:
-	$SpawnBirdTimer.wait_time = 10
-
-
 func pickRandomStartLocation() -> Vector2:
 	randomNum.randomize()
 	var index = randomNum.randi_range(0, birdStartLocations.size() - 1)
@@ -48,19 +44,18 @@ func flyToPlant(startPosition : Vector2, plantPosition : Vector2, newBird) -> vo
 
 
 func _on_OverallTimer_timeout() -> void:
-	if $SpawnBirdTimer.wait_time == 1:
-		$SpawnBirdTimer.wait_time -= 1
-		print($SpawnBirdTimer.wait_time)
-	else:
-		print("Fast as Possible")
-	# decrease bird spawn timer
+	print("OverallTimer: " + str($OverallTimer.wait_time))
+	print("SpawnBirdTimer: " + str($SpawnBirdTimer.wait_time))
+	if $SpawnBirdTimer.wait_time > 0.25:
+		$SpawnBirdTimer.wait_time -= 0.25
 
 
 func _on_Play_Button_pressed() -> void:
 	$Button.queue_free()
 	emit_signal("getBirdStartLocations")
 	emit_signal("getPlantLocations")
-	$SpawnBirdTimer.wait_time = 10
+	$SpawnBirdTimer.wait_time = 4
+	$OverallTimer.wait_time = 8
 	$SpawnBirdTimer.start()
 	$OverallTimer.start()
 
