@@ -9,6 +9,7 @@ var plantPopulation : int
 
 
 func _ready() -> void:
+	birdSpawner.connect("startMusic", self, "startMusic")
 	birdSpawner.connect("gameTime", self, "setStartTime")
 	birdSpawner.connect("getPlantLocations", self, "getPlantLocations")
 	birdSpawner.connect("getBirdStartLocations", self, "getBirdStartLocations")
@@ -18,7 +19,6 @@ func _ready() -> void:
 
 func setStartTime() -> void:
 	var startTime = OS.get_unix_time()
-	print(startTime)
 	Time.setGlobalStartTime(startTime)
 
 
@@ -43,7 +43,6 @@ func checkForOverlappingBirds(newBird : Bird) -> void:
 func onPlantDeath() -> void:
 	if plantPopulation > 1:
 		plantPopulation -= 1
-		print(plantPopulation)
 	else:
 		setEndTime()
 		get_tree().change_scene("res://EndScreen.tscn")
@@ -51,5 +50,8 @@ func onPlantDeath() -> void:
 
 func setEndTime() -> void:
 	var endTime = OS.get_unix_time()
-	print(endTime)
 	Time.setGlobalEndTime(endTime)
+
+
+func startMusic() -> void:
+	$AudioStreamPlayer.play()

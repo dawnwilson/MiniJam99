@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/2018-10-06_-_Silly_Chicken_-_David_Fesliyan.mp3-1f431d3a925bdb35f2badae018c0360f.mp3str"
+
+[deps]
+
+source_file="res://2018-10-06_-_Silly_Chicken_-_David_Fesliyan.mp3"
+dest_files=[ "res://.import/2018-10-06_-_Silly_Chicken_-_David_Fesliyan.mp3-1f431d3a925bdb35f2badae018c0360f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

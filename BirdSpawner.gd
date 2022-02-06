@@ -6,6 +6,7 @@ signal getPlantLocations
 signal getBirdStartLocations
 signal birdLanded
 signal gameTime
+signal startMusic
 
 var plantLocations : Array = []
 var birdStartLocations : Array = []
@@ -45,8 +46,6 @@ func flyToPlant(startPosition : Vector2, plantPosition : Vector2, newBird) -> vo
 
 
 func _on_OverallTimer_timeout() -> void:
-	print("OverallTimer: " + str($OverallTimer.wait_time))
-	print("SpawnBirdTimer: " + str($SpawnBirdTimer.wait_time))
 	if $SpawnBirdTimer.wait_time > 0.25:
 		$SpawnBirdTimer.wait_time -= 0.25
 
@@ -57,6 +56,7 @@ func _on_Tween_tween_completed(newBird: Object, key: NodePath) -> void:
 
 func _on_Button_pressed() -> void:
 	emit_signal("gameTime")
+	emit_signal("startMusic")
 	$CanvasLayer.queue_free()
 	emit_signal("getBirdStartLocations")
 	emit_signal("getPlantLocations")

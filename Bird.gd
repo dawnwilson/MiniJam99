@@ -17,5 +17,3 @@ func eating() -> void:
 
 func _on_EatTimer_timeout() -> void:
 	$CollisionShape2D.disabled = false
-#	var farm = get_parent().get_parent().get_parent()
-	

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/CrowCaw.mp3-24b93fa931e5152ab3fc6d107d6d981f.mp3str"
+
+[deps]
+
+source_file="res://CrowCaw.mp3"
+dest_files=[ "res://.import/CrowCaw.mp3-24b93fa931e5152ab3fc6d107d6d981f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
