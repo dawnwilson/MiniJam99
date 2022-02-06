@@ -5,12 +5,14 @@ onready var birds : Array = $BirdStartLocations.get_children()
 
 onready var birdSpawner = $BirdSpawner
 onready var birdsOnPlants : Array = []
+var plantPopulation : int
 
 
 func _ready() -> void:
 	birdSpawner.connect("getPlantLocations", self, "getPlantLocations")
 	birdSpawner.connect("getBirdStartLocations", self, "getBirdStartLocations")
 	birdSpawner.connect("birdLanded", self, "checkForOverlappingBirds")
+	plantPopulation = plants.size() -1
 
 
 func getPlantLocations() -> void:
@@ -31,4 +33,9 @@ func checkForOverlappingBirds(newBird : Bird) -> void:
 	newBird.eating()
 	pass
 
-	
+func onPlantDeath() -> void:
+	if plantPopulation > 1:
+		plantPopulation -= 1
+		print(plantPopulation)
+	else:
+		print("YOU FAILED!")

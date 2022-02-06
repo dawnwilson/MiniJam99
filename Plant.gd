@@ -1,5 +1,7 @@
 extends Area2D
 
+signal plantDied
+
 var plantFull = load("res://plant_full.png")
 var plantHalf = load("res://plant_half.png")
 var plantDead = load("res://plant_dead.png")
@@ -12,12 +14,16 @@ var hasBird := false
 var landedBird : Bird
 
 
+func _ready() -> void:
+	connect("plantDied", owner, "onPlantDeath")
+
 func _on_Plant_body_entered(body: Node) -> void:
 	if body.name == "Player":
 		if plantStage == growthStage.FULL:
 			plantStage = growthStage.HALF
 		elif plantStage == growthStage.HALF:
 			plantStage = growthStage.DEAD
+			emit_signal("plantDied")
 	if overlaps_body(body) && body.is_in_group("Birds"):
 		hasBird = true
 		landedBird = body
@@ -39,6 +45,7 @@ func _on_DestroyTimer_timeout() -> void:
 			plantStage = growthStage.HALF
 		elif plantStage == growthStage.HALF:
 			plantStage = growthStage.DEAD
+			emit_signal("plantDied")
 			landedBird.scareBird()
 
 
