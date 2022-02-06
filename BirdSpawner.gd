@@ -51,19 +51,16 @@ func _on_OverallTimer_timeout() -> void:
 		$SpawnBirdTimer.wait_time -= 0.25
 
 
-func _on_Play_Button_pressed() -> void:
+func _on_Tween_tween_completed(newBird: Object, key: NodePath) -> void:
+	emit_signal("birdLanded", newBird)
+
+
+func _on_Button_pressed() -> void:
 	emit_signal("gameTime")
-	$Button.queue_free()
+	$CanvasLayer.queue_free()
 	emit_signal("getBirdStartLocations")
 	emit_signal("getPlantLocations")
 	$SpawnBirdTimer.wait_time = 4
 	$OverallTimer.wait_time = 8
 	$SpawnBirdTimer.start()
 	$OverallTimer.start()
-
-
-func _on_Tween_tween_completed(newBird: Object, key: NodePath) -> void:
-	emit_signal("birdLanded", newBird)
-	
-	pass # Replace with function body.
-

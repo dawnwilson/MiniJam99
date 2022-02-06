@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -34.5
+margin_top = 64.0
+margin_right = 34.5
+margin_bottom = 78.0
+text = "Scare-crow"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 233.0
+margin_top = 128.0
+margin_right = 278.0
+margin_bottom = 172.0
+
+[node name="PlayButton" type="Button" parent="CenterContainer/Menu"]
+margin_right = 45.0
+margin_bottom = 20.0
+text = "PLAY"
+flat = true
+
+[node name="QuitButton" type="Button" parent="CenterContainer/Menu"]
+margin_top = 24.0
+margin_right = 45.0
+margin_bottom = 44.0
+text = "QUIT"
+flat = true
+
+[connection signal="pressed" from="CenterContainer/Menu/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="CenterContainer/Menu/QuitButton" to="." method="_on_QuitButton_pressed"]
