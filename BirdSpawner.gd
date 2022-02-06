@@ -5,6 +5,7 @@ var bird = preload("res://Bird.tscn")
 signal getPlantLocations
 signal getBirdStartLocations
 signal birdLanded
+signal gameTime
 
 var plantLocations : Array = []
 var birdStartLocations : Array = []
@@ -51,6 +52,7 @@ func _on_OverallTimer_timeout() -> void:
 
 
 func _on_Play_Button_pressed() -> void:
+	emit_signal("gameTime")
 	$Button.queue_free()
 	emit_signal("getBirdStartLocations")
 	emit_signal("getPlantLocations")

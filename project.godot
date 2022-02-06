@@ -23,6 +23,10 @@ _global_script_class_icons={
 config/name="MiniJam99"
 config/icon="res://icon.png"
 
+[autoload]
+
+Time="*res://Time.gd"
+
 [display]
 
 window/size/width=512

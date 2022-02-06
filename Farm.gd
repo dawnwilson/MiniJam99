@@ -9,10 +9,17 @@ var plantPopulation : int
 
 
 func _ready() -> void:
+	birdSpawner.connect("gameTime", self, "setStartTime")
 	birdSpawner.connect("getPlantLocations", self, "getPlantLocations")
 	birdSpawner.connect("getBirdStartLocations", self, "getBirdStartLocations")
 	birdSpawner.connect("birdLanded", self, "checkForOverlappingBirds")
 	plantPopulation = plants.size() -1
+
+
+func setStartTime() -> void:
+	var startTime = OS.get_unix_time()
+	print(startTime)
+	Time.setGlobalStartTime(startTime)
 
 
 func getPlantLocations() -> void:
@@ -31,11 +38,18 @@ func checkForOverlappingBirds(newBird : Bird) -> void:
 	#TODO: bird move if on another bird
 	#if bird isn't overlapping:
 	newBird.eating()
-	pass
+
 
 func onPlantDeath() -> void:
 	if plantPopulation > 1:
 		plantPopulation -= 1
 		print(plantPopulation)
 	else:
-		print("YOU FAILED!")
+		setEndTime()
+		get_tree().change_scene("res://EndScreen.tscn")
+
+
+func setEndTime() -> void:
+	var endTime = OS.get_unix_time()
+	print(endTime)
+	Time.setGlobalEndTime(endTime)
