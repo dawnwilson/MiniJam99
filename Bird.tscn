@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://bird.png" type="Texture" id=1]
 [ext_resource path="res://Bird.gd" type="Script" id=2]
 [ext_resource path="res://ScareZone.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Poof.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.0
@@ -26,4 +27,12 @@ position = Vector2( 9, 11 )
 wait_time = 2.0
 one_shot = true
 
+[node name="Poof" parent="." instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 9, 11 )
+
+[node name="PoofTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="timeout" from="EatTimer" to="." method="_on_EatTimer_timeout"]
+[connection signal="timeout" from="PoofTimer" to="." method="_on_PoofTimer_timeout"]
